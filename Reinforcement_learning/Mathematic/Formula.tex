@@ -1,5 +1,6 @@
 \documentclass[12pt, a4paper]{article}
-\usepackage{amsfonts}
+\usepackage{amsfonts, amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
 
 \begin{document}
 
@@ -11,12 +12,47 @@
 
 Discounted return at time step $t$:
 \begin{equation}
-G_{t} = \sum_{k=0} \gamma^{k} R_{t+k+1}, \qquad \gamma \in [0, 1]
+G_t = \sum_{k=0} \gamma^k R_{t+k+1}, \quad \gamma \in [0, 1]
 \end{equation}
 
 One-step dynamics:
+\begin{align}
+p(s', r | s, a) &= \mathbb{P}(S_{t+1}=s', R_{t+1}=r | S_t=s, A_t=a),\\
+&\quad s, s' \in \mathcal{S}, \quad a \in \mathcal{A}, \quad r \in \mathcal{R} \nonumber
+\end{align}
+
+Deterministic policy:
 \begin{equation}
-p(s', r | s, a) = \mathbb{P}(S_{t+1}=s', R_{t+1}=r | S_{t}=s, A_{t}=a)
+\pi : \mathcal{S} \rightarrow \mathcal{A},
+\quad s \in \mathcal{S}, \quad a \in \mathcal{A}
+\end{equation}
+
+Stochastic policy:
+\begin{equation}
+\pi : \mathcal{S} \times \mathcal{A} \rightarrow \pi(a|s) \in [0, 1], 
+\quad s \in \mathcal{S}, \quad a \in \mathcal{A}
+\end{equation}
+
+State-value function:
+\begin{equation}
+v_{\pi}(s) = \mathbb{E}_{\pi}[G_t | S_t=s], \quad s \in \mathcal{S}
+\end{equation}
+
+Bellman expectation equation:
+\begin{equation}
+v_{\pi}(s) = \mathbb{E}_{\pi}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) | S_t=s], 
+\quad s \in \mathcal{S}, \quad \gamma \in [0, 1]
+\end{equation}
+
+Action-value function:
+\begin{equation}
+q_{\pi}(s, a) = \mathbb{E}_{\pi}[G_t | S_t=s, A_t=a], 
+\quad s \in \mathcal{S}, \quad a \in \mathcal{A}
+\end{equation}
+
+Optimal policy:
+\begin{equation}
+\pi_*(s) = \argmax_{a \in A(s)} q_*(s, a), \quad s \in \mathcal{S}
 \end{equation}
 
 \end{document}
