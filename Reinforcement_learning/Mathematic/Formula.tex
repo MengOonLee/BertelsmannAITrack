@@ -1,0 +1,22 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsfonts}
+
+\begin{document}
+
+\title{Reinforcement Learning formula}
+\author{Lee Meng Oon}
+\date{\today}
+
+\maketitle
+
+Discounted return at time step $t$:
+\begin{equation}
+G_{t} = \sum_{k=0} \gamma^{k} R_{t+k+1}, \qquad \gamma \in [0, 1]
+\end{equation}
+
+One-step dynamics:
+\begin{equation}
+p(s', r | s, a) = \mathbb{P}(S_{t+1}=s', R_{t+1}=r | S_{t}=s, A_{t}=a)
+\end{equation}
+
+\end{document}
